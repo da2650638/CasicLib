@@ -200,6 +200,28 @@ namespace Casic {
 				return *this;
 			}
 
+			Vector3& RotateAroundXAxis(float angle)
+			{
+
+			}
+
+			Vector3& RotateAroundYAxis(float angle)
+			{
+
+			}
+
+			Vector3& RotateAroundZAxis(float angle)
+			{
+
+			}
+
+			//---------------------------------------------------------
+			// 实现经典的罗格里格兹旋转公式
+			//---------------------------------------------------------
+			Vector3& RotateAroundAxis(float angle, Vector3 axis)
+			{
+
+			}
 		}Vector3;
 
 		inline CASICLIB_API float Dot(const Vector3& v1, const Vector3& v2) {
@@ -228,27 +250,103 @@ namespace Casic {
 		}
 
 		typedef struct CASICLIB_API Vector4 {
+			// TODO: Vector4 应该有哪些函数该补全呢？
 			union {
+				float r;
 				float x;
 				float s;
 			};
 			union {
+				float g;
 				float y;
 				float t;
 			};
 			union {
+				float b;
 				float z;
 				float p;
 			};
 			union {
+				float a;
 				float w;
 				float q;
 			};
+
+			Vector4()
+				: x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
+
+			Vector4(float x, float y, float z, float w) {
+				this->x = x;
+				this->y = y;
+				this->z = z;
+				this->w = w;
+			}
+
+			Vector4(const Vector4& other)
+				: x(other.x), y(other.y), z(other.z), w(other.w) {}
+
+			Vector4 operator+(const Vector4& other) const {
+				return Vector4(x + other.x, y + other.y, z + other.z, w + other.w);
+			}
+
+			Vector4 operator-(const Vector4& other) const {
+				return Vector4(x - other.x, y - other.y, z - other.z, w - other.w);
+			}
+
+			Vector4 operator*(float value) const {
+				return Vector4(x * value, y * value, z * value, w * value);
+			}
+
+			Vector4 operator/(float value) const {
+				float inv = 1.0f / value;
+				return Vector4(x * inv, y * inv, z * inv, w * inv);
+			}
+
+			bool operator==(const Vector4& other) const {
+				return Equals(other);
+			}
+
+			bool operator!=(const Vector4& other) const {
+				return !Equals(other);
+			}
+
+			bool Equals(const Vector4& other, float epsilon = 1e-6f) const {
+				return std::fabs(x - other.x) < epsilon &&
+					std::fabs(y - other.y) < epsilon &&
+					std::fabs(z - other.z) < epsilon &&
+					std::fabs(w - other.w) < epsilon;
+			}
+
+			float LengthSquare() const {
+				return x * x + y * y + z * z + w * w;
+			}
+
+			float Length() const {
+				return std::sqrt(LengthSquare());
+			}
+
+			Vector4& Normalize() {
+				float invLength = 1.0f / Length();
+				x *= invLength;
+				y *= invLength;
+				z *= invLength;
+				w *= invLength;
+				return *this;
+			}
 		};
 
-		typedef struct CASICLIB_API OpenGLMatrix4 {
-			float v[16];
-		} OpenGLMatrix4;
+		inline CASICLIB_API float Dot(const Vector4& v1, const Vector4& v2) {
+			return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
+		}
+
+		inline CASICLIB_API Vector4 Normalize(const Vector4& v) {
+			float invLength = 1.0f / v.Length();
+			return Vector4(v.x * invLength, v.y * invLength, v.z * invLength, v.w * invLength);
+		}
+
+		inline CASICLIB_API Vector4 Lerp(const Vector4& v1, const Vector4& v2, float t) {
+			return v1 + (v2 - v1) * std::clamp(t, 0.0f, 1.0f);
+		}
 
 		typedef struct CASICLIB_API Matrix4 {
 			typedef struct {
@@ -354,6 +452,17 @@ namespace Casic {
 				return result;
 			}
 
+			Vector4 operator*(const Vector4& vec) {
+				Vector4 result;
+
+				result.x = vec.x * this->Data.m0 + vec.y * this->Data.m4 + vec.z * this->Data.m8 + vec.w * this->Data.m12;
+				result.y = vec.x * this->Data.m1 + vec.y * this->Data.m5 + vec.z * this->Data.m9 + vec.w * this->Data.m13;
+				result.z = vec.x * this->Data.m2 + vec.y * this->Data.m6 + vec.z * this->Data.m10 + vec.w * this->Data.m14;
+				result.w = vec.x * this->Data.m3 + vec.y * this->Data.m7 + vec.z * this->Data.m11 + vec.w * this->Data.m15;
+
+				return result;
+			}
+
 			bool Equals(const Matrix4& other, float epsilon = 1e-6f) const
 			{
 				return std::fabs(Data.m0 - other.Data.m0) < epsilon &&
@@ -398,27 +507,6 @@ namespace Casic {
 				result.Data.m13 = temp.Data.m7;
 				result.Data.m14 = temp.Data.m11;
 				result.Data.m15 = temp.Data.m15;
-				return result;
-			}
-
-			static OpenGLMatrix4 ToOpenGLMatrix4(const Matrix4& mat) {
-				OpenGLMatrix4 result;
-				result.v[0] = mat.Data.m0;
-				result.v[1] = mat.Data.m1;
-				result.v[2] = mat.Data.m2;
-				result.v[3] = mat.Data.m3;
-				result.v[4] = mat.Data.m4;
-				result.v[5] = mat.Data.m5;
-				result.v[6] = mat.Data.m6;
-				result.v[7] = mat.Data.m7;
-				result.v[8] = mat.Data.m8;
-				result.v[9] = mat.Data.m9;
-				result.v[10] = mat.Data.m10;
-				result.v[11] = mat.Data.m11;
-				result.v[12] = mat.Data.m12;
-				result.v[13] = mat.Data.m13;
-				result.v[14] = mat.Data.m14;
-				result.v[15] = mat.Data.m15;
 				return result;
 			}
 		};
