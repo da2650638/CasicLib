@@ -3,11 +3,12 @@
 #include "CasicConfig.h"
 #include "CasicMath.h"
 
+#include <algorithm>
+
 namespace Casic
 {
 namespace Graphics
 {
-
 	typedef struct CASICLIB_API OpenGLMatrix4 {
 		float v[16];
 	} OpenGLMatrix4;
@@ -51,6 +52,11 @@ namespace Graphics
 
 		bool operator!=(const Color& other) const {
 			return !(*this == other);
+		}
+
+		operator Math::Vector4() const {
+			Math::Vector4 result{ r / 255.f, g / 255.f, b / 255.f, a / 255.f };
+			return result;
 		}
 	} Color;
 

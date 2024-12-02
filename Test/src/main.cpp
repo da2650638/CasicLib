@@ -87,9 +87,124 @@ void TestTransposeFunction() {
     std::cout << "result " << result << std::endl;
 }
 
+void TestRotateAroundXAxis() {
+    Vector3 v(0.0f, 1.0f, 0.0f);
+    v.RotateAroundXAxis(90.0f); // 旋转 90 度
+    Vector3 expected(0.0f, 0.0f, 1.0f); // 预期结果是沿Z轴
+
+    if (v.Equals(expected)) {
+        std::cout << "TestRotateAroundXAxis passed.\n";
+    }
+    else {
+        std::cout << "TestRotateAroundXAxis failed.\n";
+    }
+    std::cout << "v: " << v << std::endl;
+}
+
+void TestRotateAroundYAxis() {
+    Vector3 v(1.0f, 0.0f, 0.0f);
+    v.RotateAroundYAxis(90.0f); // 旋转 90 度
+    Vector3 expected(0.0f, 0.0f, -1.0f); // 预期结果是沿Z轴负方向
+
+    if (v.Equals(expected)) {
+        std::cout << "TestRotateAroundYAxis passed.\n";
+    }
+    else {
+        std::cout << "TestRotateAroundYAxis failed.\n";
+    }
+    std::cout << "v: " << v << std::endl;
+}
+
+void TestRotateAroundZAxis() {
+    Vector3 v(1.0f, 0.0f, 0.0f);
+    v.RotateAroundZAxis(90.0f); // 旋转 90 度
+    Vector3 expected(0.0f, 1.0f, 0.0f); // 预期结果是沿Y轴
+
+    if (v.Equals(expected)) {
+        std::cout << "TestRotateAroundZAxis passed.\n";
+    }
+    else {
+        std::cout << "TestRotateAroundZAxis failed.\n";
+    }
+    std::cout << "v: " << v << std::endl;
+}
+
+void TestRotateAroundAxis() {
+    // 用例 1: 绕 Y 轴旋转 90 度
+    Vector3 v1(1.0f, 0.0f, 0.0f);
+    Vector3 axis1(0.0f, 1.0f, 0.0f); // 绕 Y 轴旋转
+    v1.RotateAroundAxis(90.0f, axis1); // 旋转 90 度
+    Vector3 expected1(0.0f, 0.0f, -1.0f); // 预期结果是沿 Z 轴负方向
+    if (v1.Equals(expected1)) {
+        std::cout << "TestRotateAroundAxis (Y 90) passed.\n";
+    }
+    else {
+        std::cout << "TestRotateAroundAxis (Y 90) failed.\n";
+    }
+    std::cout << "v1: " << v1 << std::endl;
+
+    // 用例 2: 绕 X 轴旋转 90 度
+    Vector3 v2(0.0f, 1.0f, 0.0f);
+    Vector3 axis2(1.0f, 0.0f, 0.0f); // 绕 X 轴旋转
+    v2.RotateAroundAxis(90.0f, axis2); // 旋转 90 度
+    Vector3 expected2(0.0f, 0.0f, 1.0f); // 预期结果是沿 Z 轴正方向
+    if (v2.Equals(expected2)) {
+        std::cout << "TestRotateAroundAxis (X 90) passed.\n";
+    }
+    else {
+        std::cout << "TestRotateAroundAxis (X 90) failed.\n";
+    }
+    std::cout << "v2: " << v2 << std::endl;
+
+    // 用例 3: 绕 Z 轴旋转 180 度
+    Vector3 v3(1.0f, 0.0f, 0.0f);
+    Vector3 axis3(0.0f, 0.0f, 1.0f); // 绕 Z 轴旋转
+    v3.RotateAroundAxis(180.0f, axis3); // 旋转 180 度
+    Vector3 expected3(-1.0f, 0.0f, 0.0f); // 预期结果是 X 轴方向反向
+    if (v3.Equals(expected3)) {
+        std::cout << "TestRotateAroundAxis (Z 180) passed.\n";
+    }
+    else {
+        std::cout << "TestRotateAroundAxis (Z 180) failed.\n";
+    }
+    std::cout << "v3: " << v3 << std::endl;
+
+    // 用例 4: 绕任意轴 (1, 1, 1) 旋转 45 度
+    Vector3 v4(1.0f, 0.0f, 0.0f);
+    Vector3 axis4(1.0f, 1.0f, 1.0f); // 绕 (1, 1, 1) 旋转
+    v4.RotateAroundAxis(45.0f, axis4); // 旋转 45 度
+    Vector3 expected4(0.5f, 0.5f, -0.7071f); // 预期结果（大致值，取决于浮动精度）
+    if (v4.Equals(expected4)) {
+        std::cout << "TestRotateAroundAxis (45 degrees) passed.\n";
+    }
+    else {
+        std::cout << "TestRotateAroundAxis (45 degrees) failed.\n";
+    }
+    std::cout << "v4: " << v4 << std::endl;
+
+    // 用例 5: 绕任意轴 (0, 1, 0) 旋转 180 度
+    Vector3 v5(1.0f, 0.0f, 0.0f);
+    Vector3 axis5(0.0f, 1.0f, 0.0f); // 绕 Y 轴旋转
+    v5.RotateAroundAxis(180.0f, axis5); // 旋转 180 度
+    Vector3 expected5(-1.0f, 0.0f, 0.0f); // 预期结果是 X 轴方向反向
+    if (v5.Equals(expected5)) {
+        std::cout << "TestRotateAroundAxis (Y 180) passed.\n";
+    }
+    else {
+        std::cout << "TestRotateAroundAxis (Y 180) failed.\n";
+    }
+    std::cout << "v5: " << v5 << std::endl;
+}
+
 int main() {
     TestIdentityMatrixMultiplication();
     TestMatrixMultiplicationWithComplexMatrix();
     TestTransposeFunction();
+
+    // 运行 Vector3 旋转测试
+    TestRotateAroundXAxis();
+    TestRotateAroundYAxis();
+    TestRotateAroundZAxis();
+    TestRotateAroundAxis();
 	return 0;
 }

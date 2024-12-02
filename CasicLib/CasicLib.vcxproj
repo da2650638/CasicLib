@@ -134,9 +134,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\CasicConfig.h" />
+    <ClInclude Include="src\CasicGraphics.h" />
     <ClInclude Include="src\CasicMath.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CasicGraphics.cpp" />
     <ClCompile Include="src\CasicMath.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
