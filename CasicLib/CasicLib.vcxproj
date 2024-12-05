@@ -112,6 +112,11 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /S /E /Y /I "$(ProjectDir)src\*.h" "$(SolutionDir)build-$(Platform)-$(Configuration)\include\Casic"
+xcopy /Y "$(OutDir)*.lib" "$(SolutionDir)build-$(Platform)-$(Configuration)\lib\"
+xcopy /Y "$(OutDir)*.dll" "$(SolutionDir)build-$(Platform)-$(Configuration)\lib\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -131,15 +136,22 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /S /E /Y /I "$(ProjectDir)src\*.h" "$(SolutionDir)build-$(Platform)-$(Configuration)\include\Casic"
+xcopy /Y "$(OutDir)*.lib" "$(SolutionDir)build-$(Platform)-$(Configuration)\lib\"
+xcopy /Y "$(OutDir)*.dll" "$(SolutionDir)build-$(Platform)-$(Configuration)\lib\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\CasicConfig.h" />
     <ClInclude Include="src\CasicGraphics.h" />
     <ClInclude Include="src\CasicMath.h" />
+    <ClInclude Include="src\CasicMatrixTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CasicGraphics.cpp" />
     <ClCompile Include="src\CasicMath.cpp" />
+    <ClCompile Include="src\CasicMatrixTransform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

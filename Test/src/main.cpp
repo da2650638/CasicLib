@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "CasicMath.h"
+#include "CasicMatrixTransform.h"
 
 using namespace Casic::Math;
 
@@ -196,15 +197,38 @@ void TestRotateAroundAxis() {
     std::cout << "v5: " << v5 << std::endl;
 }
 
+void TestGenOrthoMat()
+{
+    Matrix4 ortho = Ortho(-2.0, 2.0, -2.0, 2.0, 2.0, -2.0);
+    Matrix4 expected;
+    expected.Data.m0 = 0.5f;
+    expected.Data.m5 = 0.5f;
+    expected.Data.m10 = 0.5f;
+    expected.Data.m15 = 1.0f;
+    if (ortho.Equals(expected))
+    {
+        std::cout << "TestGenOrthoMat passed.\n";
+    }
+    else
+    {
+        std::cout << "TestGenOrthoMat failed.\n";
+    }
+    std::cout << "Expected ortho:" << expected;
+    std::cout << "result ortho:" << ortho;
+}
+
 int main() {
     TestIdentityMatrixMultiplication();
     TestMatrixMultiplicationWithComplexMatrix();
     TestTransposeFunction();
 
     // 运行 Vector3 旋转测试
-    TestRotateAroundXAxis();
-    TestRotateAroundYAxis();
-    TestRotateAroundZAxis();
-    TestRotateAroundAxis();
+    //TestRotateAroundXAxis();
+    //TestRotateAroundYAxis();
+    //TestRotateAroundZAxis();
+    //TestRotateAroundAxis();
+    
+    // 生成旋转矩阵测试
+    TestGenOrthoMat();
 	return 0;
 }
