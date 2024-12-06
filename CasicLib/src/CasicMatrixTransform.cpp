@@ -20,6 +20,35 @@ namespace Math
 		return mat;
 	}
 
+	Matrix4 Perspective(float left, float right, float bottom, float top, float near, float far)
+	{
+		float rl = right - left;
+		float tb = top - bottom;
+		float nf = near - far;
+
+		Matrix4 result;
+		result.Data.m0 = 2.0f * near / rl;
+		result.Data.m5 = 2.0f * near / tb;
+		result.Data.m8 = -(left + right) / rl;
+		result.Data.m9 = -(top + bottom) / tb;
+		result.Data.m10 = (near + far) / nf;
+		result.Data.m11 = 1.0f;
+		result.Data.m14 = -2.0f * near * far / nf;
+
+		return result;
+	}
+
+	Matrix4 Perspective(float fovy, float aspect, float near, float far)
+	{
+		float absN = std::fabs(near);
+		float rad = degreesToRadians(fovy);
+		float halfRad = rad / 2.0f;
+		float top = absN * std::tanf(halfRad);
+		float width = top * aspect;
+		Matrix4 result = Perspective(-width, width, -top, top, near, far);
+		return result;
+	}
+
 	CASICLIB_API Matrix4 LookAt(Vector3 eye, Vector3 target, Vector3 up)
 	{
 		// Calculate the orthonormal basis vectors for the camera coordinate system
@@ -157,7 +186,7 @@ namespace Math
 		result.Data.m14 = 0.0f;
 		result.Data.m15 = 1.0f;
 
-		return Matrix4();
+		return result;
 	}
 }
 }
