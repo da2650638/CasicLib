@@ -1,5 +1,7 @@
 #include "CasicMatrixTransform.h"
 
+#include <algorithm>
+
 namespace Casic
 {
 namespace Math
@@ -9,13 +11,13 @@ namespace Math
 		Matrix4 mat;
 		float rl = right - left;
 		float tb = top - bottom;
-		float nf = near - far;
+		float fn = far - near;
 		mat.Data.m0 = 2.0f / rl;
 		mat.Data.m5 = 2.0f / tb;
-		mat.Data.m10 = 2.0f / nf;
+		mat.Data.m10 = -2.0f / fn;
 		mat.Data.m12 = -(right + left) / rl;
 		mat.Data.m13 = -(top + bottom) / tb;
-		mat.Data.m14 = -(far + near) / nf;
+		mat.Data.m14 = -(far + near) / fn;
 		mat.Data.m15 = 1.0f;
 		return mat;
 	}
@@ -24,28 +26,33 @@ namespace Math
 	{
 		float rl = right - left;
 		float tb = top - bottom;
-		float nf = near - far;
+		float fn = far - near;
 
 		Matrix4 result;
 		result.Data.m0 = 2.0f * near / rl;
 		result.Data.m5 = 2.0f * near / tb;
-		result.Data.m8 = -(left + right) / rl;
-		result.Data.m9 = -(top + bottom) / tb;
-		result.Data.m10 = (near + far) / nf;
-		result.Data.m11 = 1.0f;
-		result.Data.m14 = -2.0f * near * far / nf;
+		result.Data.m8 = (left + right) / rl;
+		result.Data.m9 = (top + bottom) / tb;
+		result.Data.m10 = -(near + far) / fn;
+		result.Data.m11 = -1.0f;
+		result.Data.m14 = -2.0f * near * far / fn;
 
 		return result;
 	}
 
 	Matrix4 Perspective(float fovy, float aspect, float near, float far)
 	{
-		float absN = std::fabs(near);
 		float rad = degreesToRadians(fovy);
 		float halfRad = rad / 2.0f;
-		float top = absN * std::tanf(halfRad);
+		float top = std::tanf(halfRad);
 		float width = top * aspect;
-		Matrix4 result = Perspective(-width, width, -top, top, near, far);
+		Matrix4 result;
+		// TODO: 这里既然要使用1.0作为近平面距离，那你还传near有个jb用？
+		result.Data.m0 = 1.0f / width;
+		result.Data.m5 = 1.0f / top;
+		result.Data.m10 = -(near + far) / (far - near);
+		result.Data.m11 = -1.0f;
+		result.Data.m14 = -2.0f * far * near / (far - near);
 		return result;
 	}
 
