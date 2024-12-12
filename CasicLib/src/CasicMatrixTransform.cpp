@@ -47,9 +47,10 @@ namespace Math
 		float top = std::tanf(halfRad);
 		float width = top * aspect;
 		Matrix4 result;
-		// TODO: 这里既然要使用1.0作为近平面距离，那你还传near有个jb用？
-		result.Data.m0 = 1.0f / width;
-		result.Data.m5 = 1.0f / top;
+		// NOTE: 这里既然要使用1.0作为近平面距离，那你还传near有个jb用？
+		near = 1.0f;
+		result.Data.m0 = near / width;
+		result.Data.m5 = near / top;
 		result.Data.m10 = -(near + far) / (far - near);
 		result.Data.m11 = -1.0f;
 		result.Data.m14 = -2.0f * far * near / (far - near);
