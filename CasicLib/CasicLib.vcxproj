@@ -146,12 +146,17 @@ xcopy /Y "$(OutDir)*.dll" "$(SolutionDir)build-$(Platform)-$(Configuration)\lib\
     <ClInclude Include="src\CasicConfig.h" />
     <ClInclude Include="src\CasicGraphics.h" />
     <ClInclude Include="src\CasicMath.h" />
+    <ClInclude Include="src\CasicMatrix.h" />
     <ClInclude Include="src\CasicMatrixTransform.h" />
+    <ClInclude Include="src\CasicQuaternion.h" />
+    <ClInclude Include="src\CasicVector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CasicGraphics.cpp" />
     <ClCompile Include="src\CasicMath.cpp" />
+    <ClCompile Include="src\CasicMatrix.cpp" />
     <ClCompile Include="src\CasicMatrixTransform.cpp" />
+    <ClCompile Include="src\CasicVector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
