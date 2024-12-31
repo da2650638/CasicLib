@@ -134,11 +134,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\TestMath.cpp" />
+    <ClCompile Include="src\TestUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CasicLib\CasicLib.vcxproj">
       <Project>{fcc4edd4-652c-40cb-8111-f833115a8a65}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\TestMath.h" />
+    <ClInclude Include="src\TestUtil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
