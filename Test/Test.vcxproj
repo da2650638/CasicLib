@@ -144,7 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TestMath.h" />
+    <ClInclude Include="src\TestPOD.h" />
     <ClInclude Include="src\TestUtil.h" />
+    <ClInclude Include="src\TestTrivallyDestructible.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,9 +1,11 @@
 #include "TestMath.h"
 #include "TestUtil.h"
+#include "TestTrivallyDestructible.h"
+#include "TestPOD.h"
 
 int main() 
 {
-	TestOption1();
+	TestPod();
 
 	return 0;
 }
