@@ -147,6 +147,8 @@
     <ClInclude Include="src\TestPOD.h" />
     <ClInclude Include="src\TestUtil.h" />
     <ClInclude Include="src\TestTrivallyDestructible.h" />
+    <ClInclude Include="src\TMPLab\CommonLab.h" />
+    <ClInclude Include="src\TMPLab\OptionalLab.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
