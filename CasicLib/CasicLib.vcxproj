@@ -143,6 +143,7 @@ xcopy /Y "$(OutDir)*.dll" "$(SolutionDir)build-$(Platform)-$(Configuration)\lib\
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\CasicColors.h" />
     <ClInclude Include="src\CasicConfig.h" />
     <ClInclude Include="src\CasicGraphics.h" />
     <ClInclude Include="src\CasicMath.h" />
