@@ -196,5 +196,26 @@ namespace Math
 
 		return result;
 	}
+	CASICLIB_API Matrix4 Translate(float x, float y, float z)
+	{
+		Matrix4 result;
+		result.Data.m0 = 1.0f;
+		result.Data.m1 = 0.0f;
+		result.Data.m2 = 0.0f;
+		result.Data.m3 = 0.0f;
+		result.Data.m4 = 0.0f;
+		result.Data.m5 = 1.0f;
+		result.Data.m6 = 0.0f;
+		result.Data.m7 = 0.0f;
+		result.Data.m8 = 0.0f;
+		result.Data.m9 = 0.0f;
+		result.Data.m10 = 1.0f;
+		result.Data.m11 = 0.0f;
+		result.Data.m12 = x;
+		result.Data.m13 = y;
+		result.Data.m14 = z;
+		result.Data.m15 = 1.0f;
+		return result;
+	}
 }
 }
