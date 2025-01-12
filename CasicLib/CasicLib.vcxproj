@@ -158,6 +158,7 @@ xcopy /Y "$(OutDir)*.dll" "$(SolutionDir)build-$(Platform)-$(Configuration)\lib\
     <ClCompile Include="src\CasicMath.cpp" />
     <ClCompile Include="src\CasicMatrix.cpp" />
     <ClCompile Include="src\CasicMatrixTransform.cpp" />
+    <ClCompile Include="src\CasicQuaternion.cpp" />
     <ClCompile Include="src\CasicUtils.cpp" />
     <ClCompile Include="src\CasicVector.cpp" />
   </ItemGroup>

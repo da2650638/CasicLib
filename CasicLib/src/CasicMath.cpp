@@ -19,6 +19,15 @@ namespace Math
 #endif
 	}
 
+	CASICLIB_API float radiansToDegrees(float radians)
+	{
+#ifdef CASIC_USE_STDNUMBERS
+		return radians * (180.f / std::numbers::pi_v<float>);
+#else
+		return radians * (180.f / static_cast<float>(CASIC_PI));
+#endif
+	}
+
 	Vector3::Vector3(const Vector4& other)
 		: x(other.x), y(other.y), z(other.z)
 	{
