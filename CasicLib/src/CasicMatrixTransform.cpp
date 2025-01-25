@@ -196,6 +196,7 @@ namespace Math
 
 		return result;
 	}
+
 	CASICLIB_API Matrix4 Translate(float x, float y, float z)
 	{
 		Matrix4 result;
