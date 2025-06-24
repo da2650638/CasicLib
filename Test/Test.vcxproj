@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\TestMath.cpp" />
+    <ClCompile Include="src\TestMiniLog.h" />
     <ClCompile Include="src\TestUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
