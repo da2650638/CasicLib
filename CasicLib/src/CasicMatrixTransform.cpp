@@ -61,8 +61,8 @@ namespace Math
 	{
 		// Calculate the orthonormal basis vectors for the camera coordinate system
 		Vector3 v = Normalize(eye - target);    // z-axis (camera back direction)
-		Vector3 r = Normalize(Cross(up, v));   // x-axis (camera right direction)
-		Vector3 u = Cross(v, r);               // y-axis (camera up direction)
+		Vector3 r = Normalize(Cross(up, v));    // x-axis (camera right direction)
+		Vector3 u = Cross(v, r);                // y-axis (camera up direction)
 
 		Matrix4 mat;
 		mat.Data.m0 = r.x;
