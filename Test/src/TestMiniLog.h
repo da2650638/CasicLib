@@ -1,6 +1,27 @@
 #pragma once
 #include "CasicMiniLog.h"
 
+// NOTE: 这段代码给我背下来
+template <typename T>
+struct with_source_location {
+private:
+	T inner;
+	std::source_location loc;
+public:
+	template <typename U> requires std::constructible_from<T, U>
+	consteval with_source_location(U&& inner_arg, std::source_location loc = std::source_location::current())
+		: inner(std::forward<U>(inner_arg)), loc(std::move(loc)) {}
+	constexpr T const& format() const { return inner; }
+	constexpr std::source_location const& location() const { return loc; }
+};
+
+template <typename... Args>
+void log(with_source_location<std::format_string<Args...>> fmt, Args&&... args)
+{
+	auto loc = fmt.location();
+	std::cout << loc.file_name() << ":" << loc.line() << " [info] " << std::vformat(fmt.format().get(), std::make_format_args(args...));
+}
+
 inline void testMiniLog()
 {
 	// NOTE: 不同的编译器针对参数或{}是否越界可能有不同的行为
@@ -67,4 +88,10 @@ inline void testMiniLog()
 	n = 3;
 	s = std::format("15 Hello[{:^9.{}s}]", "abcdefg", n);
 	std::cout << s << "\n";
+
+	// TODO: 老师说这个东西的实现原理是编译器挖洞（挖坑），怎么个挖法？
+	auto sl = std::source_location::current();
+	std::cout << std::format("line:{}, function:{}, file:{}", sl.line(), sl.function_name(), sl.file_name()) << "\n";
+
+	log("nihao {}", "董泽");
 }
