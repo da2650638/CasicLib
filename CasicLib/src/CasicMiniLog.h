@@ -8,14 +8,13 @@
 #include <chrono>
 
 // NOTE: 小知识，函数模板和成员函数自带inline修饰，所以不会出现ODR风险和优化意义的inline不一样( __attribute__((always_inline)) )， C++的inline仅仅只是使得符号复合单一定义原则
-
-#define FOREACH_LOG_LEVEL(CASE)	\
-	CASE(trace)		\
-	CASE(debug)		\
-	CASE(info)		\
-	CASE(warning)	\
-	CASE(error)		\
-	CASE(fatal)	
+#define FOREACH_LOG_LEVEL(FUNCTION)	\
+	FUNCTION(trace)		\
+	FUNCTION(debug)		\
+	FUNCTION(info)		\
+	FUNCTION(warning)	\
+	FUNCTION(error)		\
+	FUNCTION(fatal)	
 
 namespace casic
 {
@@ -24,17 +23,17 @@ namespace minilog
 
 	enum class log_level : std::uint8_t 
 	{
-	#define ENUM(name) name,
+#define ENUM(name) name,
 		FOREACH_LOG_LEVEL(ENUM)
-	#undef ENUM
+#undef ENUM
 	};
 
 	inline const char* log_level_to_string(log_level level)
 	{
 		switch (level) {
-	#define CASE(level) case log_level::level: return #level;
+#define CASE(level) case log_level::level: return #level;
 			FOREACH_LOG_LEVEL(CASE)
-	#undef CASE
+#undef CASE
 		}
 		return "unknown";
 	}
