@@ -47,7 +47,7 @@ namespace Math
 		float top = std::tanf(halfRad);
 		float width = top * aspect;
 		Matrix4 result;
-		// NOTE: ÕâÀï¼ÈÈ»ÒªÊ¹ÓÃ1.0×÷Îª½üÆ½Ãæ¾àÀë£¬ÄÇÄã»¹´«nearÓĞ¸öjbÓÃ£¿
+		// NOTE: è¿™é‡Œæ—¢ç„¶è¦ä½¿ç”¨1.0ä½œä¸ºè¿‘å¹³é¢è·ç¦»ï¼Œé‚£ä½ è¿˜ä¼ nearæœ‰ä¸ªjbç”¨ï¼Ÿ
 		near = 1.0f;
 		result.Data.m0 = near / width;
 		result.Data.m5 = near / top;
@@ -87,7 +87,7 @@ namespace Math
 
 	Matrix4 Translate(Matrix4 mat, Vector3 vec)
 	{
-		// TODO: ¾ØÕóË³Ğò¿ÉÄÜÓĞÎÊÌâ£¬Ä¿Ç°ÊÇmat * matTranslate(´ú±íÆ½ÒÆ¾ØÕó£©
+		// TODO: çŸ©é˜µé¡ºåºå¯èƒ½æœ‰é—®é¢˜ï¼Œç›®å‰æ˜¯mat * matTranslate(ä»£è¡¨å¹³ç§»çŸ©é˜µï¼‰
 		Matrix4 result(mat);
 		result.Data.m12 = vec.x * mat.Data.m0 + vec.y * mat.Data.m4 + vec.z * mat.Data.m8 + mat.Data.m12;
 		result.Data.m13 = vec.x * mat.Data.m1 + vec.y * mat.Data.m5 + vec.z * mat.Data.m9 + mat.Data.m13;
@@ -109,7 +109,7 @@ namespace Math
 
 	Matrix4 Scale(Matrix4 mat, Vector3 scale)
 	{
-		// TODO: ¾ØÕóË³Ğò¿ÉÄÜÓĞÎÊÌâ£¬Ä¿Ç°ÊÇmat * matScale(´ú±íËõ·Å¾ØÕó£©
+		// TODO: çŸ©é˜µé¡ºåºå¯èƒ½æœ‰é—®é¢˜ï¼Œç›®å‰æ˜¯mat * matScale(ä»£è¡¨ç¼©æ”¾çŸ©é˜µï¼‰
 		Matrix4 result(mat);
 		
 		mat.Data.m0 *= scale.x;
@@ -142,7 +142,7 @@ namespace Math
 
 	Matrix4 Rotate(Matrix4 mat, float angle, Vector3 axis)
 	{
-		// TODO: ¾ØÕóË³Ğò¿ÉÄÜÓĞÎÊÌâ£¬Ä¿Ç°ÊÇmat * matRotate(´ú±íĞı×ª£©
+		// TODO: çŸ©é˜µé¡ºåºå¯èƒ½æœ‰é—®é¢˜ï¼Œç›®å‰æ˜¯mat * matRotate(ä»£è¡¨æ—‹è½¬ï¼‰
 		Vector3 r = Normalize(axis);
 		float rad = degreesToRadians(angle);
 		float c = std::cos(rad);

@@ -7,7 +7,7 @@
 #include <fstream>
 #include <chrono>
 
-// NOTE: Ğ¡ÖªÊ¶£¬º¯ÊıÄ£°åºÍ³ÉÔ±º¯Êı×Ô´øinlineĞŞÊÎ£¬ËùÒÔ²»»á³öÏÖODR·çÏÕºÍÓÅ»¯ÒâÒåµÄinline²»Ò»Ñù( __attribute__((always_inline)) )£¬ C++µÄinline½ö½öÖ»ÊÇÊ¹µÃ·ûºÅ¸´ºÏµ¥Ò»¶¨ÒåÔ­Ôò
+// NOTE: å°çŸ¥è¯†ï¼Œå‡½æ•°æ¨¡æ¿å’Œæˆå‘˜å‡½æ•°è‡ªå¸¦inlineä¿®é¥°ï¼Œæ‰€ä»¥ä¸ä¼šå‡ºç°ODRé£é™©å’Œä¼˜åŒ–æ„ä¹‰çš„inlineä¸ä¸€æ ·( __attribute__((always_inline)) )ï¼Œ C++çš„inlineä»…ä»…åªæ˜¯ä½¿å¾—ç¬¦å·å¤åˆå•ä¸€å®šä¹‰åŸåˆ™
 #define FOREACH_LOG_LEVEL(FUNCTION)	\
 	FUNCTION(trace)		\
 	FUNCTION(debug)		\
@@ -46,24 +46,24 @@ namespace minilog
 		return log_level::info;
 	}
 
-	// NOTE: std::underlying_type_t<log_level> »ñÈ¡Ã¶¾ÙµÄ±¾ÖÊÀàĞÍ
+	// NOTE: std::underlying_type_t<log_level> è·å–æšä¸¾çš„æœ¬è´¨ç±»å‹
 
-	// NOTE: Õâ¶Î´úÂë¸øÎÒ±³ÏÂÀ´
+	// NOTE: è¿™æ®µä»£ç ç»™æˆ‘èƒŒä¸‹æ¥
 	template <typename T>
 	struct with_source_location {
 	private:
 		T inner;
 		std::source_location loc;
 	public:
-		// TODO: ¸ãÇå³şÕâ¶Î´úÂëµÄÔ­Àí
+		// TODO: ææ¸…æ¥šè¿™æ®µä»£ç çš„åŸç†
 		template <typename U> requires std::constructible_from<T, U>
-		consteval/* ´ú±í´¿±àÒëÆÚµ÷ÓÃµÄ¹¹Ôìº¯Êı */ with_source_location(U&& inner_arg, std::source_location loc = std::source_location::current())
+		consteval/* ä»£è¡¨çº¯ç¼–è¯‘æœŸè°ƒç”¨çš„æ„é€ å‡½æ•° */ with_source_location(U&& inner_arg, std::source_location loc = std::source_location::current())
 			: inner(std::forward<U>(inner_arg)), loc(std::move(loc)) {}
 		constexpr T const& format() const { return inner; }
 		constexpr std::source_location const& location() const { return loc; }
 	};
 
-	// NOTE: static-inilization¼¼ÇÉ
+	// NOTE: static-inilizationæŠ€å·§
 	inline static log_level s_max_level = []() -> log_level {
 		// NOTE: define _CRT_SECURE_NO_WARNINGS macro
 		if (auto level = std::getenv("CASIC_MINILOG")) {
@@ -91,7 +91,7 @@ namespace minilog
 		auto now = std::chrono::zoned_time{ std::chrono::current_zone(),
 								   std::chrono::system_clock::now() };
 		auto finalmsg = std::format("{} {}:{} [{}] {}\n", now, loc.file_name(), loc.line(), log_level_to_string(level), msg);
-		// NOTE: µ¥¸ö<<ÊÇÔ­×ÓµÄ£¬µ«ÊÇ¶à¸ö<<¿ÉÄÜ»á´æÔÚÏß³Ì°²È«ĞÔÎÊÌâ£¬Òò´ËÏÈ¹¹Ôì×Ö·û´®£¬È»ºóÒ»´ÎĞÔ´òÓ¡¡£
+		// NOTE: å•ä¸ª<<æ˜¯åŸå­çš„ï¼Œä½†æ˜¯å¤šä¸ª<<å¯èƒ½ä¼šå­˜åœ¨çº¿ç¨‹å®‰å…¨æ€§é—®é¢˜ï¼Œå› æ­¤å…ˆæ„é€ å­—ç¬¦ä¸²ï¼Œç„¶åä¸€æ¬¡æ€§æ‰“å°ã€‚
 		if (level >= s_max_level) {
 			std::cout << finalmsg;
 		}
@@ -110,7 +110,7 @@ void log_##level_name(with_source_location<std::format_string<Args...>> fmt, Arg
 }
 }
 
-// NOTE: CÓïÑÔµÄÌØĞÔ£¬×Ô¶¯°ÑÒıºÅ·ìºÏÆğÀ´
+// NOTE: Cè¯­è¨€çš„ç‰¹æ€§ï¼Œè‡ªåŠ¨æŠŠå¼•å·ç¼åˆèµ·æ¥
 #define CASIC_MINILOG_P(x) ::casic::minilog::log_info(#x "={}", x);
 
 #undef FOREACH_LOG_LEVEL

@@ -26,19 +26,19 @@ void TestIdentityMatrixMultiplication() {
 void TestMatrixMultiplicationWithComplexMatrix() {
     Matrix4 mat1, mat2, expected;
 
-    // ³õÊ¼»¯ mat1
+    // åˆå§‹åŒ– mat1
     mat1.Data.m0 = 1.0f; mat1.Data.m4 = 2.0f; mat1.Data.m8 = 3.0f; mat1.Data.m12 = 4.0f;
     mat1.Data.m1 = 5.0f; mat1.Data.m5 = 6.0f; mat1.Data.m9 = 7.0f; mat1.Data.m13 = 8.0f;
     mat1.Data.m2 = 9.0f; mat1.Data.m6 = 10.0f; mat1.Data.m10 = 11.0f; mat1.Data.m14 = 12.0f;
     mat1.Data.m3 = 13.0f; mat1.Data.m7 = 14.0f; mat1.Data.m11 = 15.0f; mat1.Data.m15 = 16.0f;
 
-    // ³õÊ¼»¯ mat2
+    // åˆå§‹åŒ– mat2
     mat2.Data.m0 = 17.0f; mat2.Data.m4 = 18.0f; mat2.Data.m8 = 19.0f; mat2.Data.m12 = 20.0f;
     mat2.Data.m1 = 21.0f; mat2.Data.m5 = 22.0f; mat2.Data.m9 = 23.0f; mat2.Data.m13 = 24.0f;
     mat2.Data.m2 = 25.0f; mat2.Data.m6 = 26.0f; mat2.Data.m10 = 27.0f; mat2.Data.m14 = 28.0f;
     mat2.Data.m3 = 29.0f; mat2.Data.m7 = 30.0f; mat2.Data.m11 = 31.0f; mat2.Data.m15 = 32.0f;
 
-    // Ô¤ÆÚµÄ¾ØÕó³Ë·¨½á¹û
+    // é¢„æœŸçš„çŸ©é˜µä¹˜æ³•ç»“æœ
     expected.Data.m0 = 250.0f; expected.Data.m4 = 260.0f; expected.Data.m8 = 270.0f; expected.Data.m12 = 280.0f;
     expected.Data.m1 = 618.0f; expected.Data.m5 = 644.0f; expected.Data.m9 = 670.0f; expected.Data.m13 = 696.0f;
     expected.Data.m2 = 986.0f; expected.Data.m6 = 1028.0f; expected.Data.m10 = 1070.0f; expected.Data.m14 = 1112.0f;
@@ -86,8 +86,8 @@ void TestTransposeFunction() {
 
 void TestRotateAroundXAxis() {
     Vector3 v(0.0f, 1.0f, 0.0f);
-    v.RotateAroundXAxis(90.0f); // Ğı×ª 90 ¶È
-    Vector3 expected(0.0f, 0.0f, 1.0f); // Ô¤ÆÚ½á¹ûÊÇÑØZÖá
+    v.RotateAroundXAxis(90.0f); // æ—‹è½¬ 90 åº¦
+    Vector3 expected(0.0f, 0.0f, 1.0f); // é¢„æœŸç»“æœæ˜¯æ²¿Zè½´
 
     if (v.Equals(expected)) {
         std::cout << "TestRotateAroundXAxis passed.\n";
@@ -100,8 +100,8 @@ void TestRotateAroundXAxis() {
 
 void TestRotateAroundYAxis() {
     Vector3 v(1.0f, 0.0f, 0.0f);
-    v.RotateAroundYAxis(90.0f); // Ğı×ª 90 ¶È
-    Vector3 expected(0.0f, 0.0f, -1.0f); // Ô¤ÆÚ½á¹ûÊÇÑØZÖá¸º·½Ïò
+    v.RotateAroundYAxis(90.0f); // æ—‹è½¬ 90 åº¦
+    Vector3 expected(0.0f, 0.0f, -1.0f); // é¢„æœŸç»“æœæ˜¯æ²¿Zè½´è´Ÿæ–¹å‘
 
     if (v.Equals(expected)) {
         std::cout << "TestRotateAroundYAxis passed.\n";
@@ -114,8 +114,8 @@ void TestRotateAroundYAxis() {
 
 void TestRotateAroundZAxis() {
     Vector3 v(1.0f, 0.0f, 0.0f);
-    v.RotateAroundZAxis(90.0f); // Ğı×ª 90 ¶È
-    Vector3 expected(0.0f, 1.0f, 0.0f); // Ô¤ÆÚ½á¹ûÊÇÑØYÖá
+    v.RotateAroundZAxis(90.0f); // æ—‹è½¬ 90 åº¦
+    Vector3 expected(0.0f, 1.0f, 0.0f); // é¢„æœŸç»“æœæ˜¯æ²¿Yè½´
 
     if (v.Equals(expected)) {
         std::cout << "TestRotateAroundZAxis passed.\n";
@@ -127,11 +127,11 @@ void TestRotateAroundZAxis() {
 }
 
 void TestRotateAroundAxis() {
-    // ÓÃÀı 1: ÈÆ Y ÖáĞı×ª 90 ¶È
+    // ç”¨ä¾‹ 1: ç»• Y è½´æ—‹è½¬ 90 åº¦
     Vector3 v1(1.0f, 0.0f, 0.0f);
-    Vector3 axis1(0.0f, 1.0f, 0.0f); // ÈÆ Y ÖáĞı×ª
-    v1.RotateAroundAxis(90.0f, axis1); // Ğı×ª 90 ¶È
-    Vector3 expected1(0.0f, 0.0f, -1.0f); // Ô¤ÆÚ½á¹ûÊÇÑØ Z Öá¸º·½Ïò
+    Vector3 axis1(0.0f, 1.0f, 0.0f); // ç»• Y è½´æ—‹è½¬
+    v1.RotateAroundAxis(90.0f, axis1); // æ—‹è½¬ 90 åº¦
+    Vector3 expected1(0.0f, 0.0f, -1.0f); // é¢„æœŸç»“æœæ˜¯æ²¿ Z è½´è´Ÿæ–¹å‘
     if (v1.Equals(expected1)) {
         std::cout << "TestRotateAroundAxis (Y 90) passed.\n";
     }
@@ -140,11 +140,11 @@ void TestRotateAroundAxis() {
     }
     std::cout << "v1: " << v1 << std::endl;
 
-    // ÓÃÀı 2: ÈÆ X ÖáĞı×ª 90 ¶È
+    // ç”¨ä¾‹ 2: ç»• X è½´æ—‹è½¬ 90 åº¦
     Vector3 v2(0.0f, 1.0f, 0.0f);
-    Vector3 axis2(1.0f, 0.0f, 0.0f); // ÈÆ X ÖáĞı×ª
-    v2.RotateAroundAxis(90.0f, axis2); // Ğı×ª 90 ¶È
-    Vector3 expected2(0.0f, 0.0f, 1.0f); // Ô¤ÆÚ½á¹ûÊÇÑØ Z ÖáÕı·½Ïò
+    Vector3 axis2(1.0f, 0.0f, 0.0f); // ç»• X è½´æ—‹è½¬
+    v2.RotateAroundAxis(90.0f, axis2); // æ—‹è½¬ 90 åº¦
+    Vector3 expected2(0.0f, 0.0f, 1.0f); // é¢„æœŸç»“æœæ˜¯æ²¿ Z è½´æ­£æ–¹å‘
     if (v2.Equals(expected2)) {
         std::cout << "TestRotateAroundAxis (X 90) passed.\n";
     }
@@ -153,11 +153,11 @@ void TestRotateAroundAxis() {
     }
     std::cout << "v2: " << v2 << std::endl;
 
-    // ÓÃÀı 3: ÈÆ Z ÖáĞı×ª 180 ¶È
+    // ç”¨ä¾‹ 3: ç»• Z è½´æ—‹è½¬ 180 åº¦
     Vector3 v3(1.0f, 0.0f, 0.0f);
-    Vector3 axis3(0.0f, 0.0f, 1.0f); // ÈÆ Z ÖáĞı×ª
-    v3.RotateAroundAxis(180.0f, axis3); // Ğı×ª 180 ¶È
-    Vector3 expected3(-1.0f, 0.0f, 0.0f); // Ô¤ÆÚ½á¹ûÊÇ X Öá·½Ïò·´Ïò
+    Vector3 axis3(0.0f, 0.0f, 1.0f); // ç»• Z è½´æ—‹è½¬
+    v3.RotateAroundAxis(180.0f, axis3); // æ—‹è½¬ 180 åº¦
+    Vector3 expected3(-1.0f, 0.0f, 0.0f); // é¢„æœŸç»“æœæ˜¯ X è½´æ–¹å‘åå‘
     if (v3.Equals(expected3)) {
         std::cout << "TestRotateAroundAxis (Z 180) passed.\n";
     }
@@ -166,11 +166,11 @@ void TestRotateAroundAxis() {
     }
     std::cout << "v3: " << v3 << std::endl;
 
-    // ÓÃÀı 4: ÈÆÈÎÒâÖá (1, 1, 1) Ğı×ª 45 ¶È
+    // ç”¨ä¾‹ 4: ç»•ä»»æ„è½´ (1, 1, 1) æ—‹è½¬ 45 åº¦
     Vector3 v4(1.0f, 0.0f, 0.0f);
-    Vector3 axis4(1.0f, 1.0f, 1.0f); // ÈÆ (1, 1, 1) Ğı×ª
-    v4.RotateAroundAxis(45.0f, axis4); // Ğı×ª 45 ¶È
-    Vector3 expected4(0.5f, 0.5f, -0.7071f); // Ô¤ÆÚ½á¹û£¨´óÖÂÖµ£¬È¡¾öÓÚ¸¡¶¯¾«¶È£©
+    Vector3 axis4(1.0f, 1.0f, 1.0f); // ç»• (1, 1, 1) æ—‹è½¬
+    v4.RotateAroundAxis(45.0f, axis4); // æ—‹è½¬ 45 åº¦
+    Vector3 expected4(0.5f, 0.5f, -0.7071f); // é¢„æœŸç»“æœï¼ˆå¤§è‡´å€¼ï¼Œå–å†³äºæµ®åŠ¨ç²¾åº¦ï¼‰
     if (v4.Equals(expected4)) {
         std::cout << "TestRotateAroundAxis (45 degrees) passed.\n";
     }
@@ -179,11 +179,11 @@ void TestRotateAroundAxis() {
     }
     std::cout << "v4: " << v4 << std::endl;
 
-    // ÓÃÀı 5: ÈÆÈÎÒâÖá (0, 1, 0) Ğı×ª 180 ¶È
+    // ç”¨ä¾‹ 5: ç»•ä»»æ„è½´ (0, 1, 0) æ—‹è½¬ 180 åº¦
     Vector3 v5(1.0f, 0.0f, 0.0f);
-    Vector3 axis5(0.0f, 1.0f, 0.0f); // ÈÆ Y ÖáĞı×ª
-    v5.RotateAroundAxis(180.0f, axis5); // Ğı×ª 180 ¶È
-    Vector3 expected5(-1.0f, 0.0f, 0.0f); // Ô¤ÆÚ½á¹ûÊÇ X Öá·½Ïò·´Ïò
+    Vector3 axis5(0.0f, 1.0f, 0.0f); // ç»• Y è½´æ—‹è½¬
+    v5.RotateAroundAxis(180.0f, axis5); // æ—‹è½¬ 180 åº¦
+    Vector3 expected5(-1.0f, 0.0f, 0.0f); // é¢„æœŸç»“æœæ˜¯ X è½´æ–¹å‘åå‘
     if (v5.Equals(expected5)) {
         std::cout << "TestRotateAroundAxis (Y 180) passed.\n";
     }

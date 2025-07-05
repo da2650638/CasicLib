@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "iomanip": "cpp",
+        "type_traits": "cpp",
+        "xtr1common": "cpp"
+    }
+}

@@ -14,7 +14,7 @@
 #include "CasicVector.h"
 #include "CasicMatrix.h"
 
-// 重载 << 操作符来打印 Vector2
+// 閲嶈浇 << 鎿嶄綔绗︽潵鎵撳嵃 Vector2
 inline CASICLIB_API std::ostream& operator<<(std::ostream& os, const Casic::Math::Vector2& vec2) {
 #ifdef CASIC_USE_STDFORMAT
 	os << "Vector2: " << std::endl;
@@ -31,7 +31,7 @@ inline CASICLIB_API std::ostream& operator<<(std::ostream& os, const Casic::Math
 }
 
 
-// 重载 << 操作符来打印 Vector3
+// 閲嶈浇 << 鎿嶄綔绗︽潵鎵撳嵃 Vector3
 inline CASICLIB_API std::ostream& operator<<(std::ostream& os, const Casic::Math::Vector3& vec3) {
 #ifdef CASIC_USE_STDFORMAT
 	os << "Vector3: " << std::endl;
@@ -47,7 +47,7 @@ inline CASICLIB_API std::ostream& operator<<(std::ostream& os, const Casic::Math
 	return os;
 }
 
-// 重载 << 操作符来打印 Vector4
+// 閲嶈浇 << 鎿嶄綔绗︽潵鎵撳嵃 Vector4
 inline CASICLIB_API std::ostream& operator<<(std::ostream& os, const Casic::Math::Vector4& vec4) {
 #ifdef CASIC_USE_STDFORMAT
 	os << "Vector4: " << std::endl;

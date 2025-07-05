@@ -1,16 +1,16 @@
 #pragma once
 
-// ÅÐ¶Ï±àÒëÆ÷°æ±¾
+// åˆ¤æ–­ç¼–è¯‘å™¨ç‰ˆæœ¬
 #if __cplusplus >= 202002L
 	#define CASIC_USE_STDFORMAT
 	#define CASIC_USE_STDNUMBERS
 #endif
 
-// ·½·¨µ¼³öÉèÖÃ
+// æ–¹æ³•å¯¼å‡ºè®¾ç½®
 #ifdef CASICLIB_EXPORTS
-#define CASICLIB_API __declspec(dllexport)  // µ¼³ö·ûºÅ
+#define CASICLIB_API __declspec(dllexport)  // å¯¼å‡ºç¬¦å·
 #else
-#define CASICLIB_API __declspec(dllimport)  // µ¼Èë·ûºÅ
+#define CASICLIB_API __declspec(dllimport)  // å¯¼å…¥ç¬¦å·
 #endif
 
 #ifndef CASIC_USE_STDNUMBERS

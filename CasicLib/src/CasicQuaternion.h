@@ -9,7 +9,7 @@ namespace Math
 {
 	struct CASICLIB_API Quaternion
 	{
-		float w;	// NOTE: 实数部分
+		float w;	// NOTE: 瀹炴暟閮ㄥ垎
 		float x;	
 		float y;	
 		float z;	

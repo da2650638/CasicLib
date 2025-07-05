@@ -70,12 +70,12 @@ namespace Math
 
 	Vector3& Vector3::RotateAroundAxis(float angle, Vector3 axis)
 	{
-		// NOTE：推导过程见https://songho.ca/opengl/gl_rotate.html
+		// NOTE锛氭帹瀵艰繃绋嬭https://songho.ca/opengl/gl_rotate.html
 		Vector3 p = *this;
 		Vector3 r = axis.Normalize();
 		Vector3 pOnr = Dot(p, r) * r;
 		Vector3 rCrossp = Cross(r, p);
-		float alpha = degreesToRadians(angle);	//旋转角度
+		float alpha = degreesToRadians(angle);	//鏃嬭浆瑙掑害
 		float sinAlpha = std::sin(alpha), cosAlpha = std::cos(alpha);
 		*this = (1.0f - cosAlpha) * pOnr + cosAlpha * p + sinAlpha * rCrossp;
 		return *this;

@@ -172,7 +172,7 @@ namespace Math
 }
 }
 
-// 重载<<操作符来打印Matrix4
+// 閲嶈浇<<鎿嶄綔绗︽潵鎵撳嵃Matrix4
 inline CASICLIB_API std::ostream& operator<<(std::ostream& os, const Casic::Math::Matrix4& mat) {
 #ifdef CASIC_USE_STDFORMAT
 	os << "Matrix4x4: " << std::endl;

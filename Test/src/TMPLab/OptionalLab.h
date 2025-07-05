@@ -52,7 +52,7 @@ namespace TMPLab
 			{
 				_Value.~_Ty();
 			}
-			// NOTE: �������ˣ��϶�û��Ҫ����ĳ����־λ�ˡ�
+			// NOTE: 都析构了，肯定没必要设置某个标志位了。
 			//_Has_value = false;
 		}
 

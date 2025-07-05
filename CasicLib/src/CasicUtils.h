@@ -12,7 +12,7 @@ namespace Casic
 {
 namespace Util
 {
-	// TODO: 不能传void，必须解决这个问题
+	// TODO: 
 	template <typename _Ty, int _DefaultSize = sizeof(std::remove_cv_t<std::remove_pointer_t<_Ty>>)>
 	typename std::remove_cv_t<std::remove_pointer_t<_Ty>>* Allocate(size_t size = _DefaultSize)
 	{

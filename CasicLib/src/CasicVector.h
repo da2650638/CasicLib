@@ -118,13 +118,13 @@ namespace Math
 	 * @brief Computes the angle (in radians) between two 2D vectors.
 	 *
 	 * This function calculates the angle between two vectors using the dot product formula:
-	 * angle = acos((v1 · v2) / (|v1| * |v2|)).
+	 * angle = acos((v1 路 v2) / (|v1| * |v2|)).
 	 *
 	 * @param v1 The first vector.
 	 * @param v2 The second vector.
 	 * @return The angle between the two vectors, in radians.
 	 *
-	 * @note The returned value is in the range [0, π]. If either vector has zero length,
+	 * @note The returned value is in the range [0, 蟺]. If either vector has zero length,
 	 *       the function will return 0.0f as the angle cannot be defined.
 	 */
 	inline CASICLIB_API float AngleBetweenVectors(const Vector2& v1, const Vector2& v2){
@@ -232,7 +232,7 @@ namespace Math
 		Vector3& RotateAroundZAxis(float angle);
 
 		//---------------------------------------------------------
-		// 实现经典的围绕任意轴旋转的罗格里格兹旋转公式
+		// 瀹炵幇缁忓吀鐨勫洿缁曚换鎰忚酱鏃嬭浆鐨勭綏鏍奸噷鏍煎吂鏃嬭浆鍏紡
 		//---------------------------------------------------------
 		Vector3& RotateAroundAxis(float angle, Vector3 axis);
 	}Vector3;
@@ -258,13 +258,13 @@ namespace Math
 	 * @brief Computes the angle (in radians) between two 2D vectors.
 	 *
 	 * This function calculates the angle between two vectors using the dot product formula:
-	 * angle = acos((v1 · v2) / (|v1| * |v2|)).
+	 * angle = acos((v1 路 v2) / (|v1| * |v2|)).
 	 *
 	 * @param v1 The first vector.
 	 * @param v2 The second vector.
 	 * @return The angle between the two vectors, in radians.
 	 *
-	 * @note The returned value is in the range [0, π]. If either vector has zero length,
+	 * @note The returned value is in the range [0, 蟺]. If either vector has zero length,
 	 *       the function will return 0.0f as the angle cannot be defined.
 	 */
 	inline CASICLIB_API float AngleBetweenVectors(const Vector3& v1, const Vector3& v2) {
@@ -288,7 +288,7 @@ namespace Math
 	}
 
 	typedef struct CASICLIB_API Vector4 {
-		// TODO: Vector4 应该有哪些函数该补全呢？
+		// TODO: Vector4 搴旇鏈夊摢浜涘嚱鏁拌琛ュ叏鍛紵
 		union {
 			float r;
 			float x;
