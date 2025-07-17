@@ -1,0 +1,37 @@
+{
+    "configurations": [
+        {
+            "name": "clang-x64",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang++.exe",
+            "intelliSenseMode": "clang-x64",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "includePath": [
+                "C:/Program Files/LLVM/lib/clang/20/include",
+                "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/include",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10240.0/ucrt"
+            ],
+            "defines": [
+                "CASICLIB_EXPORTS"
+            ]
+        },
+        {
+            "name": "Win32-msvc",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "CASICLIB_EXPORTS"
+            ],
+            "windowsSdkVersion": "10.0.19041.0",
+            "compilerPath": "cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "windows-msvc-x64"
+        }
+    ],
+    "version": 4
+}

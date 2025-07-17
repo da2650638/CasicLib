@@ -2,6 +2,8 @@ bin/
 obj/
 .vs/
 
+build/
+
 **/x64/
 
 **.filters
